@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'Products/css/product.css' %}"> 
+{% endblock %}
+
+{% block content %}
+
+<div class="main">     
+    <img src="{{ Product.image.url }}" class="Image">
+
+    <div class="info"> 
+        <p class="name"> {{ Product.name }}</p>
+        <p class="description"> {{Product.description}} </p>
+        <div class="buy">  
+        <p class="price"> {{Product.price}} $</p>
+            <div>
+                <button class="ADD" onclick="addtowishlist()"> ♡ </button>
+                <button class="Cart" onclick="addtocart()"> Add to Cart</button>
+            </div>
+        </div>
+        <div class="AllImages">
+            {% for image in Product.images.all %}
+            <img src="{{image.image.url}}" class="Images">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<div class="review">
+    <p style="font-size: 1.7rem; font-family: sans-serif;">Reviews</p>
+        <p class="comment">- that wan an amazing servise i found exactly what i want and i recive it in no time thx again for bubbel team to provide this awsome service -</p>          
+        <p class="username"> by redwane</p>            
+</div>
+      
+
+<div class="suggestions"> 
+    <p class="sheading">Suggestions</p>
+    <div class="simages">
+        {% for product in category.products.all %}
+        
+            <img src="{{product.image.url}}" class="pImages" >
+        
+        {% endfor %}
+        </div>
+</div>
+<script>
+
+const itemId="{{Product.id}}" 
+let is_authenticated=JSON.parse("{{ authonticated|lower }}");
+
+if(is_authenticated){
+const UserId="{{user.id}}";
+const CartId="{{card.id}}";
+}
+
+function addtocart() {
+    fetch("/api/AddToCart/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+            'X-CSRFToken': '{{ csrf_token }}'
+        },
+        body: JSON.stringify({ 
+            id: itemId,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); 
+    })
+    .catch(error => {
+        console.error('Error:', error); 
+    });
+}
+
+function addtowishlist(){
+    location.reload()
+    fetch("/api/AddToWishlist/",{
+    method:'POST',
+    headers:{
+        'Content-Type': 'application/json', 
+        'X-CSRFToken': '{{ csrf_token }}',
+    },
+    body:JSON.stringify({ 
+        id:itemId,
+    })
+    })
+    .then(responce => responce.json())
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}My Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/Base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% block head %}
+    {% endblock %}
+
+</head>
+<body>
+    <div class="NavBar">
+        <a href="/home" class="Logo">BUBBEL</a>
+        <div class="NavLinks">
+            <a href="/products" class="Shop">Shop</a>
+            <a href="#" class="About">About</a>
+            <a href="#" class="Contact">Contact</a>
+            <a href="/home/Cart" class="Links">Cart</a>
+        </div>
+        <div class="ButtonContainer">
+            {% if  is_authenticated %}
+                <a class="Login" href="/home/logout"> Logout </a>
+            {% else %}
+                <a class="Join" href='join'>Join</a>
+                <a class="Login" href="/home/login/">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <footer>
+            <div class="contact">
+                <div class="C1" >
+                    <div class="Fch">Stay Updated wit BUBBEL</div>
+                    <div class="Fcp">join our newsletter for the latest updates on products and special offers.</div>
+                </div>
+            </div>
+            <div class="About">
+                <div class="A1" style="display: flex;">
+                <div class="At">
+                    <div class="Alogo">BUBBEL</div>
+                    <div class="Ap">Subscibe to our newsletter for the latest updates on products and special offers.</div>
+                </div>
+                <div class="Al">
+                <div class="Alinks">
+                    <p class="Alp">Helpful Links</p>
+                    <ul>
+                        <li>Shop now</li>
+                        <li>About Us</li>
+                        <li>contact Us</li>
+                        <li>FAQ</li>
+                        <li>Support</li>
+                    </ul>
+                </div>
+
+                <div class="Acontact">
+                    <p>Connect With Us</p>
+                    <ul>
+                        <li>Blog</li>
+                        <li>Careers</li>
+                        <li>Press Room</li>
+                        <li>Partnerships</li>
+                        <li>Community</li>
+                    </ul>
+                </div>
+
+                <div class="Aconnected">
+                    <p> Stay connected</p>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
+                        <li>X</li>
+                        <li>LinkedIn</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+               </div> 
+            </div>
+        </div>
+    </footer>
+    <p class="Rights">@2024 BUUBEL.ALL Right reserved</p>
+
+<script>
+    const UserId="{{user.id}}";
+    const CartId="{{card.id}}";
+    const is_authenticated="{{is_authenticated}}"
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Home/css/join.css' %}"> 
+    <title>Join</title>
+</head>
+<body>
+
+    <div class="NavBar">
+        <a href="/home" class="Logo">BUBBEL</a>
+        <div class="NavLinks">
+            <a href="/products" class="Shop">Shop</a>
+            <a href="#" class="About">About</a>
+            <a href="#" class="Contact">Contact</a>
+            <a href="#" class="Links">Links</a>
+        </div>
+        <div class="ButtonContainer">
+            {% if  is_authenticated %}
+                <a class="Login" href="/home/logout"> Logout </a>
+            {% else %}
+                <a class="Join" href='join'>Join</a>
+                <a class="Login" href="/home/login/">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <div class="form-container">  
+<form method="POST" >
+
+    {% csrf_token %}
+
+    <label for="id_email">Email:</label>
+    <input type="email" name="email" maxlength="320" autofocus="" required="" id="id_email">
+    <label for="id_Username">Username:</label>
+    <input type="text" name="Username" maxlength="150" required="" id="id_Username">
+    <label for="id_password1">Password:</label> 
+    <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+    <label for="id_password2">Password confirmation:</label>
+    <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+
+    <button type="submit">join</button>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+@font-face {
+    font-family: American Typewriter ;
+    src: url('../fonts/AmericanTypewriter.ttc') format('tcc');
+}
+.HeaderSelction {
+    height: 45px;
+    border-bottom: 1px solid black;
+}
+
+.NavBar {
+    display: flex;
+    justify-content: space-between; /* Ensures space between Logo, NavLinks, and buttons */
+    align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    padding: 0 ; /* Adds padding to the sides */
+    border-bottom: 1px solid black;
+}
+
+.Logo{
+    display: inline-block;
+    width: 115px;
+    padding: 10px;
+    font-size: 25px;
+    color: rgb(0, 161, 224);
+    text-decoration: none;
+}
+
+.NavLinks {
+    display: flex;
+    justify-content: start;
+    flex-grow: 1; /* Allows the NavLinks section to take up available space */
+}
+
+.NavLinks a {
+    margin: 0 10px;
+    font-size: 20px;
+    font-family: monospace;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+.ButtonContainer {
+    display: flex;
+    gap: 10px; 
+}
+
+.Join,.Login {
+    display: block;
+    border: 1px solid black;
+    text-decoration: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.Join {
+    background-color: white;
+    color: black;
+}
+
+.Login {
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .NavBar {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .NavLinks, .ButtonContainer {
+        margin: 10px 0;
+    }
+
+    button.Join, button.Login {
+        width: 85px; 
+        margin: 5px 0;
+    }
+}
+
+
+input{
+    justify-content: center;
+    display: block;
+    border-radius: 10px;
+    padding: 5px;
+    border-color: black;
+}
+.form-container{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+
+}
+form{
+    margin-top: 20px;
+    border: 1px solid;
+    padding: 40px;
+    border-radius: 15px;
+}

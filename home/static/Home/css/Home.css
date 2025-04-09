@@ -1,0 +1,453 @@
+/* Base styles for larger screens */
+html,body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.HeroSection {
+    position: relative;
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+    width: 100%;
+    max-width: 100%;
+    height: 60vh;
+}
+.Image1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container while maintaining the aspect ratio */
+    filter: blur(5px);
+    z-index: 0; /* Ensure the image stays in the background */
+}
+
+.S1 {
+    width: 50%;
+    font-size: 3.4rem;
+    padding-left: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    position: absolute;
+    color: rgb(0, 0, 0); 
+}
+
+.S2 {
+    width: 40%;
+    position: absolute;
+    left: 50%;
+    color: rgb(0, 0, 0); 
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.p {
+    font-size: 25px;
+    max-width: 600px;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.Shop2, .Learn {
+    display: inline-block;
+    width: auto;
+    padding: 8px 12px;
+    font-size: 18px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgb(59, 59, 59), 0 0 15px rgb(38, 89, 255);
+    text-align: center;
+    cursor: pointer;
+}
+
+.Shop2 {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+
+.Learn {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.Learn:hover, .Shop2:hover {
+    transform: translateY(-5px); 
+}
+
+
+@media (max-width: 414px) {
+    .S1 {
+        font-size: 45px; /* Smaller font size on small screens */
+        padding-left: 20px; /* Adjust padding */
+        width: 100%; /* Allow more space for the text */
+        top: 0;
+    }
+
+    .S2 {
+        width: 100%; /* Reduce width to fit smaller screens */
+        left:0;
+        top: 50%;
+    }
+
+    .p {
+        font-size: 16px; /* Smaller font size for better readability */
+        padding-left: 10px; /* Adjust padding */
+    }
+
+    .HeroSection {
+        height: 62vh;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .Shop2, .Learn {
+        font-size: 16px; /* Reduce button font size */
+        padding: 5px 8px; /* Adjust button padding */
+        box-shadow: none;
+    }
+}
+
+
+
+.FeaterSection{
+    border-bottom: 1px solid black;
+    padding-bottom: 50px;
+
+}
+.F1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    margin-top: 25px;   
+}
+.p2{
+    margin: 0;
+    padding: 0;
+    font-size: 55px;
+    width: 700px;
+    text-align: center;
+}
+.p3{
+    width: 700px;
+    text-align: center;
+    font-size: 15px;
+}
+.F2{
+    display: flex;
+    justify-content: space-evenly;
+}
+.Feature{
+    width: 350px;
+    border: 2px solid black; 
+    border-radius: 25px;
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 25px;
+    margin-left: 3px;
+    margin-right: 3px;
+
+    box-shadow: 0 4px 10px rgb(59, 59, 59) ,0 0 5px rgb(38, 89, 255) ;
+
+}
+.Feature:hover{
+transform: translateY(-10px); 
+}
+.Feature p1{
+    font-size: 28px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.Feature logo,p1,p2 {
+    padding: 15px;
+}
+.F3{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;  
+    margin-top: 60px;
+}
+.F3-B1{
+    border: 1px solid black;
+    background-color: white;
+    padding: 5px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.F3-B2{
+    font-size: 20px;
+    background-color: white;
+    border: none;
+}
+@media (max-width: 768px) {
+.p2{
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    width: 90%;
+}
+.p3{
+    font-size: 12px;
+    width: 80%;
+    text-align: center;
+}
+.F2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+}
+
+
+.Featerproduct{
+    border-bottom: 1px solid black;
+    padding-bottom: 18px;
+    position: relative;
+    height: 570px;
+    width: 100%;
+
+}
+.Fps1{
+    font-size: 35px;
+    padding: 5px;
+    height: 10%;
+    width: 45%;
+    margin-left: 5%;
+    font-weight: bolder;
+    position: relative;
+    left: 20%;
+    margin-bottom: 0;
+    /* background-color: transparent; 
+    backdrop-filter: blur(10px); 
+    border-radius: 8px; 
+    border: 1px solid rgb(100, 100, 100); */
+}
+
+.Fps2{
+    display: flex;
+    margin:  0 10%; 
+} 
+.Fp{
+    font-weight:bolder ;
+   /* background-color: rgb(174, 189, 199); */
+   background-color: transparent;
+   border: 2px solid black;
+   border-radius: 10px;
+   margin-right: 10px; 
+   width: 40%;
+   padding: 15px;
+   box-shadow: 0 4px 10px rgb(59, 59, 59) ,0 0 5px rgb(38, 89, 255) ;
+
+}
+.Fp p{
+font-size: 35px;
+margin-top: 5px;
+margin-bottom: 15px;
+}
+.Fp p3{
+font-size: 15px;
+}
+@media (max-width: 700px) {
+.Fps1{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 90%;
+}
+.Fps2{
+    margin: 0 10%;
+}
+
+}
+
+.Image2{
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    /* filter: blur(5px); */
+
+}
+
+.FeaterSection2{
+    margin-left: 40px;
+    margin-right: 40px;
+    border-bottom: 1px solid black;
+}
+.FSText{
+    display: flex;
+    gap: 40px;
+}
+.FST1{
+    font-size: 35px;
+    width: 50%;
+    margin-top: 40px;
+    margin-right: 15px;
+    background-color: whitesmoke;
+    box-decoration-break: initial;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgb(59, 59, 59) ,0 0 5px rgb(38, 89, 255) ;
+}
+.FST2{
+    font-size: 20px;
+    width: 50%;
+    margin-top: 40px;
+}
+.FSImages{
+    display: flex;
+    margin: 40px;
+    margin-top: 0;
+    gap :20px;
+    padding: 0;
+}
+.FS{
+    border-radius: 5px;
+    padding: 15px;
+    width: 35%;
+    background-color: whitesmoke;
+}
+.FSp {
+    font-size: 20px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 0px;
+}
+.FSp1{
+    font-size: 12px;
+}
+.Image3{
+    width: 100%;
+    border-radius: 9px;
+    border: 1px solid black;
+}
+@media (max-width: 700px) {
+    .FSText{
+        display: flex;
+        flex-direction: column;
+    }
+    .FST1{
+        width: 90%;
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+    .FST2{
+        margin: 0;
+        padding: 0;
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .FSImages{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .FS{
+        width: 100%;
+    }
+}
+
+ 
+.BenefitsSection{
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 20px;
+    margin-left: 5%;
+    width: 100%;
+}
+.BT1{
+    font-size: 2rem;
+    background-color: whitesmoke;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgb(59, 59, 59) ,0 0 5px rgb(38, 89, 255) ;
+    width: 80%;
+}
+.BT2{
+    margin-left: 30px;
+    margin-top: 40px;
+    width: 40%;
+}
+.BS{
+    width: 50%;
+}
+.Image4{
+    width: 100%;
+    box-shadow: 0 4px 10px rgb(59, 59, 59) ,0 0 5px rgba(162, 182, 248, 0.568) ;
+}
+@media (max-width: 700px) {
+.BenefitsSection{
+    flex-direction: column;
+}
+.BT1{
+    width: 80vw;
+}
+.BSp{
+    font-size: 1rem;
+    width: 90vw;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.Image4{
+    position: relative;
+    width: 80vw;
+    margin-left: 5%;
+}
+}
+
+
+.ShopSection{
+    background-color: black;
+    color: white;
+    padding: 0px 0px 40px 80px;
+    border-bottom: 1px solid rgb(255, 0, 0);
+}
+.SSh{
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+    font-size: 2.5rem;
+    margin: 0;
+    width: 550px;
+}
+.SSp{
+    padding-top: 0;
+    font-size: 1rem;
+    width: 550px;
+
+}
+.Shop3{
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
+    
+}
+.Sign2{
+    border: 1px solid white;
+    font-size: 20px;
+    background-color: black;
+    padding: 5px;
+    color: white;
+    padding: 5;;
+}
+@media (max-width: 700px) {
+    .ShopSection{
+    padding: 0px 0px 20px 40px;
+
+    }
+    .SSh{
+        font-size: 1.5rem;
+    }
+    .SSp{
+        padding-top: 0;
+        font-size: 0.8rem;
+        width: 80%;
+    }
+}

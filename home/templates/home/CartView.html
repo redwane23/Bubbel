@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title  %} Cart {% endblock %}
+{% load static %}
+
+    {% block head %}
+
+    <link rel="stylesheet" href="{% static 'Home/css/CartView.css' %}"> 
+
+    {% endblock %}
+
+
+{% block content %}
+
+<div class="Cart">
+
+</div>
+<p class="price_to_pay" id="price_to_pay">{{card.price_to_pay}} $ </p>
+
+<div class="wishlist_list">
+
+</div>
+
+
+
+<script src="{% static 'Home/javasctipt/CartView.js' %}"></script>
+<script>
+    function fetchCartItems() {
+    fetch("/api/getCartItem/", {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json', 
+            'X-CSRFToken': '{{ csrf_token }}',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            const cartList = document.getElementsByClassName('Cart')[0];
+            cartList.innerHTML = ''; // Clear existing items
+
+            let P = document.createElement('p');
+            P.textContent="Your Cart"
+            P.className='ItemP'
+
+            cartList.appendChild(P);
+
+            data.itemsdata.forEach(item => {
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+                itemDiv.id = `item-${item.id}`;
+                
+                itemDiv.innerHTML = `
+                    <p class="item-name" id="item-name-${item.id}"> ${item.product} </p>
+                    <div class="total_item_price" id="total_item_price-${item.id}">${item.total_price}</div>
+
+                    <button class="increase-button" onclick="changequantity(${item.id}, 'increase', ${UserId})">+</button>
+                    <p class="quantity" id="quantity-${item.id}">${item.quantity}</p>
+                    <button class="decrease-button" onclick="changequantity(${item.id}, 'decrease', ${UserId})">-</button>
+                    <button style="color: red; border: 1px solid red; border-radius: 10px;" onclick="changequantity(${item.id},'Remove',${UserId})">Remove</button>
+                `;
+                cartList.appendChild(itemDiv);
+            });
+        } else {
+            console.error("Failed to fetch items:", data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching cart items:", error);
+    });
+}
+</script>
+{% endblock %}
+

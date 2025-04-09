@@ -1,0 +1,91 @@
+@font-face {
+    font-family: American Typewriter ;
+    src: url('../fonts/AmericanTypewriter.ttc') format('tcc');
+}
+
+body,html{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x:hidden;
+}
+
+.category{
+    border-bottom: 1px solid blcak;
+}
+.catname{
+ font-family:American Typewriter;
+ font-weight: 200;
+ font-size: 1.5rem;
+ margin: 5px;
+ border-bottom: 1px solid;
+ padding: 5px;
+}
+.ProductList{
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-rows:30vh ;
+    grid-template-columns: 30vw;
+    grid-auto-columns: 30vw;
+    margin-left: 5px;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+}
+.products{
+    border-radius: 15px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: gainsboro;
+    height: 95%;
+}
+.ProductImage{
+    width: 90%;
+    height: 60%;
+    border-radius: 15px;
+}
+.name{
+    font-family: sans-serif;
+}
+.price{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align:center;
+    font-size: 1.5rem;
+    font-family:American Typewriter;
+    font-weight: 200;
+    color: rgb(75, 75, 75);
+}
+.description{
+    font-size: 0rem;
+}
+
+@media (min-width: 414px) {
+    .ProductList{
+        grid-template-columns: 30vw;
+        grid-auto-columns: 30vw;
+        margin-left: 5px;
+        grid-template-rows:450px ;
+    }
+    .name{
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 5px;
+    }
+    .description{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    .ProductImage{
+    width: 28vw;
+    height: 250px;
+    border-radius: 15px;
+    }
+    .catname{
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,91 @@
+.Cart{
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 5px;
+    width:60%;
+    margin: 5px auto;
+    background-color: rgb(213, 255, 255);
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    border-top: 1px solid;
+    text-align: center;
+    margin: 5px;
+
+}
+.ItemP{
+    font-size: 1.5rem;
+    margin: 10px  auto;
+    text-align: center;
+}
+.item-name{
+    margin-top: 20px;
+    width: 30%;
+    font-size: 1.2rem;
+}
+.total_item_price{
+    margin-right: 5px;
+    font-family: American Typewriter ;
+    margin-top: 20px;
+    width: 10%;
+}
+.quantity{
+    border: 1px solid;
+    padding: 4px;
+    border-radius: 5px;
+}
+.increase-button{
+    background-color: rgb(255, 255, 255);
+    margin: 14px 4px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.decrease-button{
+    background-color: rgb(253, 253, 255);
+    margin: 14px 4px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+.price_to_pay{
+    font-family: American Typewriter ; 
+    text-align: center;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 0 30px;
+}
+.pay{
+    font-size: 1.2rem;
+    font-family: American Typewriter ; 
+    text-align: center;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 7px;
+    margin: 5px 25%;
+    background-color: rgb(0, 161, 224);
+    color: black;
+}
+.dp2{
+    margin:0px;
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: white;
+    margin-top: 15px;
+    padding: 15px;
+    border-top: 2px solid;
+}
+.wishlist_list{
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 5px;
+    width:60%;
+    margin: 5px auto;
+    background-color: rgb(213, 255, 255);
+}
+.product{
+    border-top: 1px solid;
+    display: flex;
+    justify-content: space-between;
+}
