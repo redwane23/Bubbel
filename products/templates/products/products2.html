@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Products/css/products2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Products</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div>
+            <p class='logo'>TeckStore</p>
+        </div>
+    
+        <ul class="nav_links">
+            <li><a href="/">Electronecs</a></li>
+            <li><a href="/products">Computers</a></li>
+            <li><a href="/about">Gaming</a></li>
+            <li><a href="/contact">Accesories</a></li>
+        </ul>
+        <div class="search_bar"> 
+            <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+            <input type="text" placeholder="Search products.." style="border:none ;">        
+        </div>
+
+        <div style="display: flex;gap: 10px;">
+            <div>
+                <a href="/login"><i class="fa-solid fa-user"></i>   </a>
+            </div>
+            <div class="cart">
+                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="body">
+        <div class="Filters">
+            <h3>Filters</h3>
+            <div class="filter_option">
+                <h4 class="filter_title">Category</h4>
+                <div class="filter_items">
+                    {% for category in categories %}
+                    <div class="category_checkbox">
+                    <input type="checkbox" id="{{ category.name }}" name="{{ category.name }}" value="{{ category.name }}">
+                    <label for="{{ category.name }}">{{ category.name }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+                <h4> price range</h4>
+                <input type="range" min="0" max="1000" value="500" class="slider" id="myRange">
+                <p>Value: <span id="demo">2000 $</span></p>
+                
+                <h4> In Stock</h4>
+                <input type="checkbox" id="in_stock" name="in_stock" value="in_stock">
+                
+                <h4> minimal rating</h4>
+                <input type="radio" id="1_star" name="rating" value="1_star">
+                <label for="1_star">1 star & up</label><br>
+                <input type="radio" id="2_star" name="rating" value="2_star">
+                <label for="2_star">2 star & up</label><br>
+                <input type="radio" id="3_star" name="rating" value="3  star">
+                <label for="3_star">3 star & up</label><br>
+                <input type="radio" id="4_star" name="rating" value="4_star">
+                <label for="4_star">4 star & up</label><br>
+                <input type="radio" id="5_star" name="rating" value="5_star">
+                <label for="5_star">5 star</label><br>
+            </div>
+        </div>
+        <div class="ProductList">
+    
+            <div class="products_listing_price">
+                <div class="listing_info">
+                    <p class="Products_text"> Products </p>
+                    <p class="Products_found"> Found {{sum}} products</p>
+                </div>
+    
+                <div class="listing_style">
+                    <i class="fa-solid fa-table-cells"></i>
+                    <i class="fa-solid fa-list"></i>
+                </div>
+            </div>
+    
+    
+            <div class="ProductListing">
+    
+                {% for product in products %}
+                        <div class="products">
+                            <button class="whish_list_button"><i class="fa-regular fa-heart"></i>  </button>
+                            <img src="{{ product.image.url }}" class="ProductImage">
+                            <p class="rating" > 
+                            {% if product.rating >= 1 %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %}
+                            {% if product.rating >= 2 %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %}
+                            {% if product.rating >= 3 %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %}
+                            {% if product.rating >= 4 %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %}
+                            {% if product.rating == 5 %} <i class="fa-solid fa-star"></i> {% else %} <i class="fa-regular fa-star"></i> {% endif %}
+                            ({{ product.number_of_reviews }} reviews)
+                            </p>
+                            <p class="name">{{ product.name }}</p>
+                            <p class="description">{{ product.description }}</p>
+                            <p class="price">{{ product.price }}$</p>
+                            <button class="add_to_cart">+ Add to cart</button>
+                        </div>
+                {% endfor %}
+            </div>
+    
+        </div>
+    
+    </div>
+</body>
+</html>
+
+
+
