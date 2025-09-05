@@ -1,5 +1,3 @@
-from itertools import product
-import string
 from products.models import Product
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
@@ -47,8 +45,8 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
         return self.Username
 
 
-class Card(models.Model):
-    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='owner')
+class Cart(models.Model):
+    owner=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='owner')
 
     def price_to_pay(self):
         return  sum(item.total_price() for item in self.items.all())
@@ -56,8 +54,8 @@ class Card(models.Model):
     def __str__(self):
         return f"Owned by {self.owner}" 
 
-class CardItem(models.Model):
-    card=models.ForeignKey(Card,on_delete=models.CASCADE,related_name='items')
+class CartItem(models.Model):
+    cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name='items')
     product=models.ForeignKey(Product,on_delete=models.CASCADE,related_name='item')
     quantity=models.PositiveIntegerField(default=1)
 
@@ -69,7 +67,7 @@ class CardItem(models.Model):
 
 
 class WishList(models.Model):
-    owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='theowner')
+    owner=models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='theowner')
     def __str__(self):
         return f'owend by {self.owner}'
 
@@ -84,3 +82,5 @@ class WishListItem(models.Model):
 class order_list(models.Model):
     customer=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     data=models.JSONField()
+    totla_cost=models.FloatField(default=0)
+

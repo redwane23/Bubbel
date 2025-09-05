@@ -1,9 +1,9 @@
 from home.models import *
 from products.models import Product
 import json
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from home.signals import called
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
@@ -23,7 +23,7 @@ def updated_quantity(request):
             return JsonResponse({'status': 'error', 'message': 'Invalid action'}, status=400)
         
         owner=request.user
-        cart=Card.objects.get(owner=owner)
+        cart=Cart.objects.get(owner=owner)
 
         item = next((cartitem for cartitem in cart.items.all() if cartitem.id == itemID), None)
         if item is None:
@@ -53,7 +53,7 @@ def updated_quantity(request):
             'new_price_to_pay':new_price_to_pay,
             'new_total_item_price':new_total_item_price,
         })
-    except Card.DoesNotExist:
+    except Cart.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Cart not found'}, status=404)
     except json.JSONDecodeError:
         return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
@@ -70,21 +70,21 @@ def AddToCart(request):
 
         newitem = Product.objects.get(id=id)
         owner = request.user
-        card = Card.objects.get(owner=owner)
-        carditems = CardItem.objects.select_related("product").filter(card=card).only('product__name')
+        cart = Cart.objects.get(owner=owner)
+        cartitems = CartItem.objects.select_related("product").filter(cart=cart).only('product__name')
 
-        for item in carditems:
+        for item in cartitems:
             if item.product.name == newitem.name:
                 return JsonResponse({'status': 'failed', 'reason': "Item already exists"})
 
-        newcarditem = CardItem.objects.create(card=card, product=newitem)
-        newcarditem.save()
+        newcartitem = CartItem.objects.create(cart=cart, product=newitem)
+        newcartitem.save()
 
         return JsonResponse({"status": 'Item has been added successfully'})
     
     except Product.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
-    except Card.DoesNotExist:
+    except Cart.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Cart not found'}, status=404)
 
         
@@ -96,15 +96,15 @@ def getCartItem(request):
         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
     try:
         owner=request.user
-        card=Card.objects.get(owner=owner)
-        items=CardItem.objects.select_related("product").filter(card=card)
+        cart=Cart.objects.get(owner=owner)
+        items=CartItem.objects.select_related("product").filter(cart=cart)
 
         itemsdata=[]
 
         for item in items:
             itemsdata.append({
                 'id':item.id,
-                'card':str(item.card),
+                'cart':str(item.cart),
                 'product':item.product.name,
                 'quantity':int(item.quantity),
                 'total_price':float(item.total_price()),
@@ -113,7 +113,7 @@ def getCartItem(request):
             'itemsdata':itemsdata,
             'status':"success",
         })
-    except Card.DoesNotExist:
+    except Cart.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Cart not found'}, status=404)
     except Exception as e:      
         return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
@@ -178,24 +178,25 @@ def ordered(request):
         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
     try:
         owner=request.user
-        cart=Card.objects.get(owner=owner)
-        items=CardItem.objects.filter(card=cart)
-
+        cart=Cart.objects.get(owner=owner)
+        items=CartItem.objects.filter(cart=cart)
+        if items.count()==0:
+            return JsonResponse({'status':'faild','reason':'the cart is empty'})
         order=[]
         for item in items:
             singal_order={ str(item) : item.quantity}
             order.append(singal_order)
-        
-        order_list.objects.create(customer=owner,data=order) 
+
+        total_price=cart.price_to_pay()
+        new_order=order_list.objects.create(customer=owner,data=order,totla_cost=total_price)
 
         cart.items.all().delete()
+        called.send(sender='ordered',message=order,user_id=owner.id) 
+    
+        return redirect(f'/payment/create-checkout-session/{new_order.id}')
 
-        called.send(sender='ordered',message=order,user_id=owner.i) 
-        
-        return JsonResponse({
-            'status':'success'
-            })
-    except Card.DoesNotExist:
+
+    except Cart.DoesNotExist:
             return JsonResponse({'status': 'error', 'message': 'Cart not found'}, status=404)
     except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)

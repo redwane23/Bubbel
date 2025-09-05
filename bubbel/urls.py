@@ -8,6 +8,7 @@ urlpatterns = [
     path("home/",include("home.urls")),
     path("products/",include("products.urls")),
     path("api/",include("api.urls")),
+    path("payment/",include("payment.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += [path('__debug__/', include('debug_toolbar.urls'))]

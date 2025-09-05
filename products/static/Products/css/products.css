@@ -1,91 +1,121 @@
 @font-face {
-    font-family: American Typewriter ;
-    src: url('../fonts/AmericanTypewriter.ttc') format('tcc');
+font-family: American Typewriter ;
+src: url('../fonts/AmericanTypewriter.ttc') format('tcc');
 }
 
 body,html{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    overflow-x:hidden;
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+overflow-x:hidden;
+background-color: white;
+}
+.horisontal_addvertisement{
+display: flex;
+align-content: center;
+}
+.top_advertisement{
+width: 1440px;
+height: 140px;
+padding:0 80px;
+padding-top: 20px;
 }
 
-.category{
-    border-bottom: 1px solid blcak;
+.categorie_sell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: light;
+    font-family: sans-serif;
+    height: 40px;
+    background-color: rgb(0, 161, 224);;
+    width: 150px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    margin: 10px 30px;
+    border-radius: 5px;
+}
+.category {
+    margin: 30px ;
+    border-bottom: 1px solid black;
 }
 .catname{
- font-family:American Typewriter;
- font-weight: 200;
- font-size: 1.5rem;
- margin: 5px;
- border-bottom: 1px solid;
- padding: 5px;
+font-family:American Typewriter;
+font-weight: 200;
+font-size: 1.5rem;
+margin: 5px;
+border-bottom: 1px solid;
+padding: 5px;
 }
-.ProductList{
-    border-bottom: 1px solid black;
-    display: grid;
-    grid-template-rows:30vh ;
-    grid-template-columns: 30vw;
-    grid-auto-columns: 30vw;
-    margin-left: 5px;
-    grid-auto-flow: column;
-    overflow-x: scroll;
+.ProductList {
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+gap: 20px;
+padding: 10px;
+scroll-behavior: smooth;
+scroll-snap-type: x mandatory;
+width: 100%;
 }
-.products{
-    border-radius: 15px;
-    padding: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    position: relative;
-    background-color: gainsboro;
-    height: 95%;
+.products {
+flex: 0 0 auto; 
+width: 350px;
+height: 450px;
+background: whitesmoke;
+/* border-radius: 15px; */
+position: relative;
+scroll-snap-align: start;
 }
 .ProductImage{
-    width: 90%;
+    width: 348px;
     height: 60%;
-    border-radius: 15px;
+    border: 1px solid gainsboro;
+    border-bottom: none;
+    /* border-top-left-radius: 15px;    
+    border-top-right-radius: 15px;     */
+
 }
-.name{
+
+.name {
     font-family: sans-serif;
 }
-.price{
+
+.price {
     position: absolute;
     bottom: 0%;
     left: 50%;
     transform: translateX(-50%);
-    text-align:center;
+    text-align: center;
     font-size: 1.5rem;
-    font-family:American Typewriter;
+    font-family: American Typewriter;
     font-weight: 200;
     color: rgb(75, 75, 75);
 }
-.description{
+
+.description {
     font-size: 0rem;
 }
 
 @media (min-width: 414px) {
-    .ProductList{
+    .ProductList {
         grid-template-columns: 30vw;
         grid-auto-columns: 30vw;
         margin-left: 5px;
-        grid-template-rows:450px ;
+        grid-template-rows: 450px;
     }
-    .name{
+    .name {
         text-align: center;
         font-size: 1rem;
         font-weight: 700;
         margin-top: 5px;
     }
-    .description{
+    .description {
         text-align: center;
         font-size: 0.8rem;
     }
-    .ProductImage{
-    width: 28vw;
-    height: 250px;
-    border-radius: 15px;
-    }
-    .catname{
+    .catname {
         font-size: 2rem;
     }
 }

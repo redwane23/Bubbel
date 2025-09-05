@@ -2,7 +2,7 @@ from .models import CustomUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver,Signal
 from django.conf import settings
-from .models import Card,WishList
+from .models import Cart,WishList
 from django.core.mail import send_mail
 
 called=Signal() #custom signal when a fuction called
@@ -11,7 +11,7 @@ called=Signal() #custom signal when a fuction called
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_card(sender,instance,created,**kwargs):
     if created:
-        Card.objects.create(owner=instance)
+        Cart.objects.create(owner=instance)
 
 #create a whishlist whenever Custom user created
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
@@ -27,13 +27,14 @@ def SendEmail(sender, **kwargs):
     order=kwargs.get("message")
     user=CustomUser.objects.get(id=user_id)
     user_email=user.email
-    send_mail(
-    "update about your cart", # subject
+
+    print(send_mail(
+    "update about your cart", 
     f"""hello {user} your order hava been sent succsufuly
-    thx for Using out servive
+    thx for Using our servive
     you orderd{order}  
     """, # message
     settings.EMAIL_HOST_USER, # from email
     [user_email], 
     fail_silently=False, 
-    )
+    ))

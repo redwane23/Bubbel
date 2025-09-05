@@ -6,5 +6,5 @@ urlpatterns = [
     path('Cart',views.CartView,name='Cart'),
     path('join/',views.join,name='join'),
     path('login/',views.custom_login_view,name='login'),
-    path("logout/",views.logout_view,name='logout')
+    path("logout/",views.logout_view,name='logout'),
 ]

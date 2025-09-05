@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'products.apps.ProductsConfig',
     'api.apps.ApiConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -66,12 +67,15 @@ TEMPLATES = [
     },
 ]
 
+STRIPE_SECRET_KEY='sk_test_51S1ss6RySHXDc8Kl336RBCXwgp2AbtzQt0Mj64sW2pAv3HAuqOUPEcVem4i5LtxhmUSYNoOFk8PDOhm5WlGofwnZ00c57Rps20'
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend' 
-EMAIL_HOST='smtp.gamil.com' 
+EMAIL_HOST='smtp.gmail.com' 
 EMAIL_PORT=587 
 EMAIL_USE_TLS=True 
 EMAIL_HOST_USER='redoianekassouse@gmail.com' 
-EMAIL_HOST_PASSWORD='********' 
+EMAIL_HOST_PASSWORD='yjpuprlzxyakprfm' 
 
 
 WSGI_APPLICATION = 'bubbel.wsgi.application'

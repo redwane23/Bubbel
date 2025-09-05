@@ -7,25 +7,66 @@
 
 {% block content %}
 
-{% for category in categories %}
-
-<div class="category">
-    <div class="catname">{{ category.name }} </div>
-        <div class="ProductList" >
-            {% for product in category.products.all%}   
-        <a href="product/{{product.id}}" style="text-decoration: none; color: black;"> 
-            <div class="products"> 
-                <img src="{{ product.image.url }}" class="ProductImage">
-                <p class="name"> {{ product.name }}</p>
-                <p class="description">{{ product.description }}</p>
-                <p class="price">{{ product.price }}$</p>
-            </div>
-        </a>
-        {% endfor %}
-     </div> 
+<div class="horisontal_addvertisement">
+    <img src="{% static 'Products/images/horisontal_add.jpg' %}" class="top_advertisement">
 </div>
 
-{% endfor %}
+
+    <div class="category">
+        <div class="catname">Categories</div>
+        <div>
+            <div  style="justify-content: space-between; display:flex; margin-left: 30px;">
+                {% for category in categories|slice:":5" %}
+                    <a href="/products/category/{{ category.id }}" style="text-decoration: none; color: black;">
+                        <div class="categorie_sell">{{ category.name }}</div>
+                    </a>
+                {% endfor %}
+            </div>            
+        </div>
+
+
+    </div>
+
+
+
+<div style="display: flex; padding: 0 55px;" >
+
+    <div>
+        <!-- <img src="{% static 'Products/images/vertical_add.jpg' %}" class="left_advertisement"> -->
+
+    </div>
+
+    <div style="flex-grow: 1; width: 100%;">
+        {% for category in categories %}
+        <div class="category">
+            <div class="catname">{{ category.name }} </div>
+            <div class="ProductList">
+                {% for product in category.products.all %}   
+                    <a href="product/{{ product.id }}" style="text-decoration: none; color: black;"> 
+                        <div class="products"> 
+                            <img src="{{ product.image.url }}" class="ProductImage">
+                            <p class="name">{{ product.name }}</p>
+                            <p class="description">{{ product.description }}</p>
+                            <p class="price">{{ product.price }}$</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div> 
+        </div>
+    
+        {% if forloop.counter|divisibleby:3 %}
+            <div class="advertisement">
+                <div class="horisontal_addvertisement">
+                    <img src="{% static 'Products/images/m8add.png' %}" class="top_advertisement">
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+
+</div>
+
+
+
 
 
 {% endblock %}

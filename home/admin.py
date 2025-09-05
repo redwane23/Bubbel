@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import  CustomUser,Card,CardItem,WishList,WishListItem,order_list
+from .models import  CustomUser,Cart,CartItem,WishList,WishListItem,order_list
 
 admin.site.register(CustomUser)
 
-admin.site.register(Card)
+admin.site.register(Cart)
 
-admin.site.register(CardItem)
+admin.site.register(CartItem)
  
 admin.site.register(WishList)
 

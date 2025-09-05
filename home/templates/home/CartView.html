@@ -15,9 +15,13 @@
 {% block content %}
 
 <div class="Cart">
-
 </div>
-<p class="price_to_pay" id="price_to_pay">{{card.price_to_pay}} $ </p>
+
+<form method="post" action="/api/ordered/">
+    {% csrf_token %}
+    <button type="submit"> pay with stripe </button>
+</form>
+<p class="price_to_pay" id="price_to_pay">{{cart.price_to_pay}} $ </p>
 
 <div class="wishlist_list">
 
@@ -64,6 +68,7 @@
                 `;
                 cartList.appendChild(itemDiv);
             });
+
         } else {
             console.error("Failed to fetch items:", data.message);
         }
