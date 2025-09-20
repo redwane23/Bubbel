@@ -67,7 +67,12 @@ TEMPLATES = [
     },
 ]
 
+<<<<<<< HEAD
 
+=======
+STRIPE_SECRET_KEY='sk_test_51S1ss6RySHXDc8Kl336RBCXwgp2AbtzQt0Mj64sW2pAv3HAuqOUPEcVem4i5LtxhmUSYNoOFk8PDOhm5WlGofwnZ00c57Rps20'
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+>>>>>>> 31ce80f (adding stripe  paymenet and checkout and testing)
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend' 
 EMAIL_HOST='smtp.gmail.com' 
